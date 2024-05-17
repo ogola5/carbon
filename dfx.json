@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "carbon_credit_backend": {
+      "candid": "src/carbon_credit_backend/carbon_credit_backend.did",
+      "package": "carbon_credit_backend",
+      "type": "rust"
+    },
+    "carbon_credit_frontend": {
+      "dependencies": [
+        "carbon_credit_backend"
+      ],
+      "source": [
+        "src/carbon_credit_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "carbon_credit_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

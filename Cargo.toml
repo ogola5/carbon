@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/carbon_credit_backend"
+]
+resolver = "2"
