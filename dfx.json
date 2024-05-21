@@ -5,6 +5,7 @@
       "package": "carbon_credit_backend",
       "type": "rust"
     },
+    
     "carbon_credit_frontend": {
       "dependencies": [
         "carbon_credit_backend"

@@ -1,3 +1,49 @@
+type Credit = record {
+  id : nat64;
+  issued_to : text;
+  owner : text;
+  project_id : nat64;
+  price : nat64;
+  amount : nat64;
+  is_for_sale : bool;
+};
+type CreditForSale = record {
+  id : nat64;
+  credit_id : nat64;
+  seller : text;
+  price : nat64;
+  amount : nat64;
+};
+type Project = record {
+  id : nat64;
+  verified : bool;
+  credits : nat64;
+  owner : text;
+  name : text;
+  description : text;
+  price : nat64;
+};
+type Result = variant { Ok; Err : text };
+type Result_1 = variant { Ok : nat64; Err : text };
+type Result_2 = variant { Ok : Credit; Err : text };
+type Result_3 = variant { Ok : CreditForSale; Err : text };
+type Result_4 = variant { Ok : Project; Err : text };
 service : {
-    "greet": (text) -> (text) query;
+  buy_credits : (nat64, nat64) -> (Result);
+  calculate_carbon_footprint : (nat64) -> (Result_1) query;
+  delete_credit : (nat64) -> (Result_2);
+  delete_credit_for_sale : (nat64) -> (Result_3);
+  delete_project : (nat64) -> (Result_4);
+  issue_credit : (nat64, nat64, nat64, text) -> (opt Credit);
+  list_credit_for_sale : (nat64, nat64, nat64, text) -> (opt CreditForSale);
+  query_credit : (nat64) -> (Result_2) query;
+  read_credit : (nat64) -> (Result_2) query;
+  read_credit_for_sale : (nat64) -> (Result_3) query;
+  read_project : (nat64) -> (Result_4) query;
+  register_project : (text, text, nat64, nat64, text) -> (opt Project);
+  track_credits : () -> (vec Credit) query;
+  update_credit : (nat64, nat64, nat64, nat64, text, text, bool) -> (Result_2);
+  update_credit_for_sale : (nat64, nat64, nat64, nat64, text) -> (Result_3);
+  update_project : (nat64, text, text, nat64, nat64, text, bool) -> (Result_4);
+  verify_project : (nat64) -> (Result_4);
 }
